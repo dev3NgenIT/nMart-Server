@@ -1,0 +1,247 @@
+
+isActive for
+	- about-us
+	
+	- contact-us
+	- homes
+	- sites
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------
+Problem:
+	. After delete only shows 4 items, but on page refresh shows all users
+			- Problem: fixed filters
+
+
+
+
+
+
+-------------
+
+
+
+
+
+frontend: missing
+	. show alert on delete and error
+	. send value on isVisible
+
+	. some notification not works
+	. select next categories based on previous category
+
+
+backend: problem
+	- Every route which has startDate and endDate there need to expire check in verifications, like
+			- coupon expire checked needed in backend
+
+	- substract product.stock after order completed
+	- delete all reviews of specific product, when that product deleted
+	- take a minimum copy of all fields within that collection too  which has reference. so that referenced item deletion not effect others
+
+
+
+Problem-1: Update product from UI thow global error, means updateProduct controller didn't handled properly.
+	Reason: ?
+	Solution: ?
+
+Problem: on update deleted all images, even it not changed in UI 
+	Reason: Because on update send unchanged data too.
+	solution:
+		1. Don't send those data which not changed by UI ( need little work from UI)
+		2. Update Backend: if url start's with http/https that means it image field not changed, 
+
+
+
+
+
+ApiFeatures
+	. ?_fields[name]=value 				
+
+	Problem:
+		1. Exact match: lowercase not allowed
+		2. Exact match: part of work not allowed
+	
+	Solution:
+		1. use _search for search, not _filter which is exact match.
+		2. try to use `$res` operator if possible, so that it matches all citeria.
+
+
+
+task:
+	- handle email & phone update seperately
+	- apply transactions for delete user: see Mongodb.txt
+
+
+
+
+-------------
+Tasks
+	- remove _ underscore from search input
+	- Write some tests
+	- add a virtual Field: numOfSalse : come from order tables
+	- 
+
+
+Problem:
+	- facebook login 
+
+
+
+----------[ Features implemented ]----------
+
+- login:
+	- google login
+	- local login
+
+- verify user request
+		. send token or otp via email for now, latter can be send with real SMS
+
+- verifed user's featues
+		. can show verified badge on user's comment, profile, or special permision 
+		. can see is reviewer is really purched the product or review non-percher
+
+- forgot-password
+		. send token via email
+
+- update-password
+
+- import/export database by single command
+		. Export database as csv file: user can update and import into database
+
+
+- API Featues:
+		. Search 		: by many fiedls 
+		. filter 		: by verious way
+		. sort
+		. get only limited fields
+
+- Email / OTP
+		. Send credentials for forgot-password request via email
+		. Send OTP for verifed user's badge : (currently handled by email)
+
+
+- Files
+		. Handling large files
+		. Handling file and url both
+		. any media : Image or Video will have buffer streaming features 
+
+
+- Protected & restricted routes:
+		. some fields are protected conditionally
+		. based on user's role: admin | super_admin | user 	has different privillages
+
+
+- deployment:
+		. Dockerised application can be easily handled by kubernetes in production
+		. Server deployed locally
+
+
+		
+------------------------------------------------------------------
+
+
+BKash
+
+https://developer.bka.sh/
+
+https://www.bkash.com/business 	> Marchant
+
+
+-----------------
+- write some tests
+
+- Multi-theme : change theme by click on color dropdown
+
+
+Bulk Delete:
+
+	- product
+	- brand
+	- order
+	- category
+	- subCategory
+
+
+
+
+Can't I use same function or body for other test,
+
+- brand
+- products
+
+		- price 					: check price can't be negetive value
+		- discountPrice 	: check discount's price can't be more than the original price, not less than price value
+
+
+		- only user him self can update user field of product,
+
+
+users
+customer
+Roles / Permissions
+products
+	- all products
+			- create
+			- read
+			- update
+			- delete
+
+reviews / reports
+category / subCategory / childCategory
+
+
+
+-
+
+		Status
+			- Full File 			:	200
+			- Partial Content :	206
+
+
+Full File Download
+	- Clients (e.g., browsers, download managers) request the entire file by sending a GET request without a Range header.
+
+
+			GET /upload/sample.mp4 HTTP/1.1
+			Host: example.com
+
+
+
+
+Partial Content (Streaming)
+	- For large files (e.g., videos), clients request specific byte ranges using the Range header. This is often done by:
+
+    - Media players (e.g., VLC, HTML5 video elements).
+    - Download managers for resuming downloads.
+
+
+			GET /upload/sample.mp4 HTTP/1.1
+			Host: example.com
+			Range: bytes=500-1000
+
+
+
+
+-----------------------------------------------------------------------------------------
