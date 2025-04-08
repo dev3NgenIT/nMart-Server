@@ -70,4 +70,15 @@ router.use('/api/shipping-info', shippingInfoRouter)
 router.use('/api/billing-info', billingInfoRouter)
 router.use('/api/orders', orderRouter)
 
+// Welcome Route
+router.get("/", (req, res) => {
+    res.json({
+      message: "🚀 Welcome to N-Mart Server! 🚀",
+      status: "✅ Server is running smoothly!",
+      docs: "📜 API Documentation: https://github.com/dev3NgenIT/nMart-Server",
+      support: "📧 Need help? Contact us at ngenitltd@gmail.com",
+      timestamp: new Date().toISOString(),
+    });
+  });
+
 export default router
