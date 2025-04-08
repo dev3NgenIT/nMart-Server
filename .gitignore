@@ -1,0 +1,12 @@
+demo
+playground
+
+node_modules
+dist
+
+.env
+
+
+upload
+seeder/backup_and_restore/_data
+nginx

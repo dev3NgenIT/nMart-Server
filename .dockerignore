@@ -1,0 +1,8 @@
+node_module
+Dockerfile
+.dockerignore
+.git
+.gitignore
+*.log
+
+seeder/backup_and_restore/_data

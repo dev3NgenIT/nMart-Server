@@ -1,0 +1,44 @@
+services:
+  mongodb_svc:
+    image: mongo
+    container_name: mongodb_container
+    ports:
+      - 27018:27017 			# only need to access via 'MongoDB-Compass to access database'
+    restart: always
+    volumes:
+      - mongo_db:/data/db     
+    networks:
+      - mern_network
+
+
+  backend_svc:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: backend
+    container_name: backend_container
+    working_dir: /app
+    ports:
+      - 5000:5000 					#  hard coded hostPort:containerPort  
+      # - ${PORT}:5000 			#  if app has fixed port but host need dynamic port
+      # - ${PORT}:${PORT} 	#  if both add has dynamic port and host also has dynamic port
+    restart: always
+    volumes:
+      - .:/app
+      - /app/node_modules             # required for module install inside container as well
+    env_file: 
+      - .env 
+    environment:
+      NODE_ENV: development
+      MONGO_URI: mongodb://mongodb_svc/ngenit 		
+    depends_on:
+      - mongodb_svc
+    networks:
+      - mern_network
+
+volumes:
+  mongo_db: 
+
+networks:
+  mern_network:
+    driver: bridge
